@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -212,6 +213,9 @@
     }
     .plant-tile:hover { border-color: var(--green-light); box-shadow: 0 6px 24px rgba(78,140,95,0.12); transform: translateY(-3px); }
     .plant-tile svg { width: 32px; height: 32px; color: var(--green-light); margin-bottom: 1.25rem; }
+    .plant-photo { width:100%; height:180px; border-radius:8px; margin-bottom:1.25rem; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .plant-photo svg { width:48px; height:48px; color:var(--green-light); opacity:0.5; }
+    .plant-body { display:flex; flex-direction:column; flex:1; }
     .plant-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--green-deep); margin-bottom: 0.5rem; }
     .plant-desc { font-size: 0.85rem; line-height: 1.65; color: var(--text-muted); }
     .plant-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(26,46,26,0.06); }
@@ -491,7 +495,7 @@
         <div class="serve-perk">Drought-tolerant &amp; low-maintenance options</div>
         <div class="serve-perk">Curb appeal &amp; backyard transformations</div>
         <div class="serve-perk">Pool-friendly &amp; patio plants</div>
-      </div>
+      </div></div>
     </div>
   </div>
 </section>
@@ -507,40 +511,29 @@
   </div>
   <div class="plants-grid">
     <div class="plant-tile">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 7 4 4 6c4 1 8 4 8 6z"/><path d="M12 12c0-5 5-8 8-6-4 1-8 4-8 6z"/></svg>
-      <div class="plant-name">Palms &amp; Cycads</div>
+      <div class="plant-photo" style="background:#e8f0e4;">
+        <!-- TO ADD A PHOTO: upload your image to GitHub in an "images" folder, then replace the style with: background-image:url('images/trees.jpg'); background-size:cover; background-position:center; -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M5 3c-.5 4 1.5 7 7 7"/><path d="M19 3c.5 4-1.5 7-7 7"/></svg>
+      </div>
+      <div class="plant-body">
+      <div class="plant-name">Trees</div>
       <div class="plant-desc">Queen Palms, King Sagos, Mexican Fan Palms — bring instant Southern California character to any space. Multiple sizes for immediate impact.</div>
-      <div class="plant-footer"><span class="plant-tag">Multiple sizes</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div>
+      <div class="plant-footer"><span class="plant-tag">Multiple sizes</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
     </div>
     <div class="plant-tile">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M5 3c-.5 4 1.5 7 7 7"/><path d="M19 3c.5 4-1.5 7-7 7"/></svg>
-      <div class="plant-name">Shade &amp; Accent Trees</div>
-      <div class="plant-desc">Ornamental, native, and fruiting trees in box and container sizes. Perfect for parkways, backyards, and large landscape installs.</div>
-      <div class="plant-footer"><span class="plant-tag">Box &amp; container</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div>
+      <div class="plant-photo" style="background:#dff0e8;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 4-2.5 7.5-6 9"/><path d="M12 2C8 6 6 10 8 14s6 6 4 10"/><path d="M2 12h20"/></svg></div><div class="plant-body"><div class="plant-name">Tropicals</div><div class="plant-desc">Bird of Paradise, Monstera, Elephant Ear, and more. Bold statement plants for pools, entryways, patios, and upscale residential projects.</div><div class="plant-footer"><span class="plant-tag">Limited &amp; seasonal</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div></div>
     </div>
     <div class="plant-tile">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12v10"/><path d="M8 16h8"/></svg>
-      <div class="plant-name">Flowering Shrubs</div>
-      <div class="plant-desc">Bougainvillea, lantana, salvia, roses, and dozens more. Year-round color for every season and every microclimate in Southern California.</div>
-      <div class="plant-footer"><span class="plant-tag">Seasonal availability</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div>
+      <div class="plant-photo" style="background:#e4eee4;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></div><div class="plant-body"><div class="plant-name">Privacy Hedges</div><div class="plant-desc">Ficus, Podocarpus, Italian Cypress, and more. Fast-growing screening plants for fences, property lines, and sound barriers.</div><div class="plant-footer"><span class="plant-tag">Multiple sizes</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div></div>
     </div>
     <div class="plant-tile">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-      <div class="plant-name">Groundcovers &amp; Grasses</div>
-      <div class="plant-desc">Low-water, fire-resistant, and turf-replacement options. Ideal for slopes, parkways, and water-wise yards across OC and Riverside County.</div>
-      <div class="plant-footer"><span class="plant-tag">Drought-tolerant</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div>
+      <div class="plant-photo" style="background:#f0ece0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12v10"/><path d="M8 16h8"/></svg></div><div class="plant-body"><div class="plant-name">Flowers</div><div class="plant-desc">Bougainvillea, lantana, salvia, roses, and dozens more. Vibrant color for every season and every microclimate in Southern California.</div><div class="plant-footer"><span class="plant-tag">Seasonal availability</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div></div>
     </div>
     <div class="plant-tile">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"/><path d="M12 14c-2-3-5-4-7-2 2 0 5 1 7 2z"/><path d="M12 14c2-3 5-4 7-2-2 0-5 1-7 2z"/><path d="M12 10c0-4 2-7 4-7-2 2-3 5-3 7h-2z"/></svg>
-      <div class="plant-name">Succulents &amp; Cacti</div>
-      <div class="plant-desc">Agave, aloe, echeveria, and desert specimens. Perfect for modern yards, rock gardens, and low-maintenance landscaping. Always in stock.</div>
-      <div class="plant-footer"><span class="plant-tag">Always in stock</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div>
+      <div class="plant-photo" style="background:#edf5e0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.5 2.5-1 3h-6c-.5-.5-1-1.5-1-3a4 4 0 0 1 4-4z"/><path d="M6 9h12l-1.5 11H7.5L6 9z"/></svg></div><div class="plant-body"><div class="plant-name">Fruits</div><div class="plant-desc">Citrus, avocado, fig, pomegranate, and more. Locally grown fruiting trees that thrive in Southern California's climate year-round.</div><div class="plant-footer"><span class="plant-tag">Edible &amp; ornamental</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div></div>
     </div>
     <div class="plant-tile">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 4-2.5 7.5-6 9"/><path d="M12 2C8 6 6 10 8 14s6 6 4 10"/><path d="M2 12h20"/></svg>
-      <div class="plant-name">Tropical &amp; Exotic</div>
-      <div class="plant-desc">Bird of Paradise, Monstera, Elephant Ear, and more. Statement plants for pools, entryways, patios, and upscale residential projects.</div>
-      <div class="plant-footer"><span class="plant-tag">Limited &amp; seasonal</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div>
+      <div class="plant-photo" style="background:#ede8dc;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"/><path d="M12 14c-2-3-5-4-7-2 2 0 5 1 7 2z"/><path d="M12 14c2-3 5-4 7-2-2 0-5 1-7 2z"/><path d="M12 10c0-4 2-7 4-7-2 2-3 5-3 7h-2z"/></svg></div><div class="plant-body"><div class="plant-name">Drought Tolerant</div><div class="plant-desc">Agave, aloe, ornamental grasses, and water-wise groundcovers. Beautiful, low-maintenance plants built for Southern California's dry climate.</div><div class="plant-footer"><span class="plant-tag">Water-wise</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
     </div>
   </div>
 </section>
@@ -828,12 +821,12 @@
         <label class="form-label">Plants I'm looking for</label>
         <select class="form-select">
           <option value="">Select a category...</option>
-          <option>Palms &amp; Cycads</option>
-          <option>Shade &amp; Accent Trees</option>
-          <option>Flowering Shrubs</option>
-          <option>Groundcovers &amp; Grasses</option>
-          <option>Succulents &amp; Cacti</option>
-          <option>Tropical &amp; Exotic</option>
+          <option>Trees</option>
+          <option>Tropicals</option>
+          <option>Privacy Hedges</option>
+          <option>Flowers</option>
+          <option>Fruits</option>
+          <option>Drought Tolerant</option>
           <option>Mixed / Full Catalog</option>
           <option>Not sure — need help!</option>
         </select>
