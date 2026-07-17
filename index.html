@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Las Flores Nursery — Wholesale Plants | Orange County & Riverside County</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #1a3d1f;
+      --green-mid: #2d5a34;
+      --green-light: #4e8c5f;
+      --green-pale: #c8dfc8;
+      --green-mist: #f0f7f0;
+      --gold: #d4920a;
+      --gold-light: #f5c842;
+      --gold-pale: #fdf5e0;
+      --white: #ffffff;
+      --cream: #fafaf7;
+      --text: #1a2e1a;
+      --text-muted: #5a6e5a;
+      --border: rgba(26,61,31,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--white); border-bottom: 2px solid var(--gold);
+      padding: 0.6rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: box-shadow 0.3s;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { height: 56px; width: auto; }
+    .nav-logo-text { display: flex; flex-direction: column; }
+    .nav-logo-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; color: var(--green); letter-spacing: 0.02em; line-height: 1.1; }
+    .nav-logo-sub { font-size: 0.65rem; font-weight: 600; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--green); color: var(--gold-light) !important;
+      padding: 0.6rem 1.4rem; border-radius: 6px; font-weight: 700 !important;
+      border: 2px solid var(--green); transition: all 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; border-color: var(--gold) !important; color: var(--white) !important; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--green); border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 73px; left: 0; right: 0; z-index: 190; background: var(--white); border-bottom: 2px solid var(--gold); padding: 1.5rem 2rem; flex-direction: column; gap: 0.75rem; box-shadow: 0 8px 32px rgba(26,61,31,0.1); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 1rem; font-weight: 600; color: var(--text-muted); text-decoration: none; padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu .mob-cta { background: var(--green); color: var(--gold-light) !important; padding: 0.9rem; border-radius: 6px; text-align: center; font-weight: 700; margin-top: 0.5rem; border: none; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh; padding-top: 73px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--white); overflow: hidden;
+    }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 4rem 3rem 4rem 4rem; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold-pale); border: 1.5px solid var(--gold);
+      color: var(--gold); border-radius: 50px; padding: 0.4rem 1rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 1.5rem; width: fit-content;
+      opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 4.8rem); line-height: 1.08; font-weight: 800;
+      color: var(--green);
+      opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+    }
+    .hero-title .gold { color: var(--gold); font-style: italic; }
+    .hero-sub {
+      margin-top: 1.25rem; font-size: 1rem; font-weight: 400; line-height: 1.8;
+      color: var(--text-muted); max-width: 440px;
+      opacity: 0; animation: fadeUp 0.6s 0.35s forwards;
+    }
+    .hero-divider {
+      width: 60px; height: 3px; background: var(--gold);
+      border-radius: 2px; margin: 1.5rem 0;
+      opacity: 0; animation: fadeUp 0.6s 0.4s forwards;
+    }
+    .hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.6s 0.45s forwards; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .stat-label { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+    .hero-actions { display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.6s 0.55s forwards; }
+    .btn-primary { background: var(--green); color: var(--gold-light); padding: 0.9rem 1.75rem; border: 2px solid var(--green); border-radius: 6px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; letter-spacing: 0.02em; }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); color: var(--white); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,146,10,0.3); }
+    .btn-outline { background: transparent; color: var(--green); padding: 0.9rem 1.75rem; border: 2px solid var(--green); border-radius: 6px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-outline:hover { background: var(--green-mist); transform: translateY(-2px); }
+
+    /* HERO RIGHT */
+    .hero-right { position: relative; overflow: hidden; background: var(--green); }
+    .hero-right-pattern { position: absolute; inset: 0; opacity: 0.06; background-image: radial-gradient(circle, #fff 1.5px, transparent 1.5px); background-size: 28px 28px; }
+    .hero-logo-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; flex-direction: column; gap: 2rem; padding: 2rem; }
+    .hero-logo-center img { width: min(280px, 70%); opacity: 0.95; filter: brightness(1.1); }
+    .hero-grid { position: absolute; inset: 0; z-index: 3; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; padding: 2px; opacity: 0; transition: opacity 0.3s; }
+    .hero-right:hover .hero-grid { opacity: 1; }
+    .hero-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: rgba(26,61,31,0.7); transition: background 0.2s; }
+    .hero-cell:hover { background: rgba(26,61,31,0.85); }
+    .hero-cell svg { width: 36px; height: 36px; color: var(--gold-light); }
+    .hero-cell-label { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-style: italic; color: var(--white); }
+    .hero-badge-cell { position: absolute; top: 0.75rem; right: 0.75rem; background: var(--gold); color: var(--green); font-size: 0.6rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 4px; z-index: 4; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar { background: var(--gold); display: flex; justify-content: center; }
+    .trust-item { flex: 1; max-width: 220px; padding: 1.25rem 1.5rem; text-align: center; border-right: 1px solid rgba(26,61,31,0.15); display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+    .trust-item:last-child { border-right: none; }
+    .trust-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .trust-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); font-weight: 700; opacity: 0.8; }
+
+    /* ── SHARED ── */
+    .section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; line-height: 1.15; color: var(--green); }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .gold-bar { width: 50px; height: 3px; background: var(--gold); border-radius: 2px; margin: 1rem 0 2rem; }
+
+    /* ── PLANTS ── */
+    .plants-bg { background: var(--cream); }
+    .plants-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+    .btn-ghost { color: var(--green); font-size: 0.85rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 0.3rem; transition: gap 0.2s; border-bottom: 2px solid var(--gold); padding-bottom: 2px; }
+    .btn-ghost:hover { gap: 0.6rem; }
+    .plants-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .plant-card { background: var(--white); border-radius: 10px; border: 2px solid var(--border); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+    .plant-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(26,61,31,0.12); border-color: var(--gold); }
+    .plant-img { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .plant-img svg { width: 44px; height: 44px; color: var(--green); opacity: 0.25; }
+    .plant-img-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 0.6rem 0.75rem; background: linear-gradient(to top, rgba(26,61,31,0.85), transparent); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); }
+    .plant-body { padding: 1.25rem; }
+    .plant-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--green); margin-bottom: 0.4rem; }
+    .plant-desc { font-size: 0.82rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 1rem; }
+    .plant-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+    .plant-tag { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .plant-link { font-size: 0.8rem; font-weight: 700; color: var(--green); text-decoration: none; border-bottom: 1px solid var(--gold); }
+    .plant-link:hover { color: var(--gold); }
+
+    /* ── SLIDESHOW ── */
+    .slideshow-bg { background: var(--green); }
+    .slideshow-header { text-align: center; margin-bottom: 2.5rem; }
+    .slideshow-header .section-tag { color: var(--gold); }
+    .slideshow-header .section-title { color: var(--white); }
+    .slideshow-header .gold-bar { margin: 1rem auto 0; }
+    .slideshow-wrap { position: relative; width: 100%; max-width: 1100px; margin: 0 auto; border-radius: 10px; overflow: hidden; border: 3px solid var(--gold); }
+    .slideshow-track { display: flex; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+    .slide { min-width: 100%; position: relative; }
+    .slide img { width: 100%; height: 520px; object-fit: cover; display: block; }
+    .slide-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem 2.5rem; background: linear-gradient(to top, rgba(26,61,31,0.9) 0%, transparent 100%); }
+    .slide-caption-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; color: var(--white); }
+    .slide-caption-sub { font-size: 0.78rem; color: var(--gold-light); margin-top: 0.3rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+    .slideshow-btn { position: absolute; top: 50%; transform: translateY(-50%); background: var(--gold); color: var(--green); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; font-size: 1.1rem; font-weight: 800; transition: background 0.2s; z-index: 10; }
+    .slideshow-btn:hover { background: var(--gold-light); }
+    .slideshow-prev { left: 1rem; }
+    .slideshow-next { right: 1rem; }
+    .slideshow-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.2s; padding: 0; }
+    .dot.active { background: var(--gold); transform: scale(1.3); }
+
+    /* ── STORY ── */
+    .story-bg { background: var(--white); }
+    .story-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .story-text p { font-size: 0.95rem; line-height: 1.85; color: var(--text-muted); margin-top: 1rem; }
+    .story-milestones { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .milestone { border-left: 3px solid var(--gold); padding-left: 1rem; }
+    .milestone-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .milestone-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.2rem; font-weight: 600; }
+    .story-card { background: var(--green); border-radius: 12px; padding: 3rem; position: relative; overflow: hidden; border: 3px solid var(--gold); }
+    .story-card-bg { position: absolute; inset: 0; opacity: 0.04; background-image: radial-gradient(circle,#fff 1.5px,transparent 1.5px); background-size: 22px 22px; }
+    .story-logo { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+    .story-logo img { width: 100px; }
+    .story-quote { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; line-height: 1.5; color: var(--white); margin-bottom: 1.25rem; position: relative; z-index: 1; text-align: center; }
+    .story-attr { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); position: relative; z-index: 1; text-align: center; font-weight: 700; }
+    .story-checklist { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212,146,10,0.3); display: flex; flex-direction: column; gap: 0.85rem; position: relative; z-index: 1; }
+    .story-check { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: rgba(255,255,255,0.85); }
+    .story-check::before { content: ''; width: 18px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5c842' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") no-repeat center; flex-shrink: 0; }
+    .areas-row { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(212,146,10,0.3); position: relative; z-index: 1; }
+    .areas-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; font-weight: 700; }
+    .areas-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .area-chip { font-size: 0.75rem; padding: 0.25rem 0.7rem; background: rgba(212,146,10,0.15); color: rgba(255,255,255,0.85); border-radius: 4px; border: 1px solid rgba(212,146,10,0.3); }
+
+    /* ── CONTACT ── */
+    .contact-bg { background: var(--cream); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+    .contact-info-sub { font-size: 0.92rem; color: var(--text-muted); line-height: 1.75; margin-top: 1rem; max-width: 360px; }
+    .contact-cards { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 2rem; }
+    .contact-card { display: flex; gap: 1rem; align-items: flex-start; background: var(--white); padding: 1rem 1.25rem; border-radius: 8px; border: 2px solid var(--border); transition: border-color 0.2s; }
+    .contact-card:hover { border-color: var(--gold); }
+    .contact-card svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+    .cc-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 0.2rem; }
+    .cc-val { font-size: 0.9rem; color: var(--green); font-weight: 500; }
+    .cc-val a { color: var(--green); text-decoration: none; }
+    .cc-val a:hover { color: var(--gold); }
+    .contact-form-box { background: var(--white); border-radius: 12px; padding: 2.25rem; box-shadow: 0 4px 28px rgba(26,61,31,0.08); border: 2px solid var(--border); }
+    .form-head { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--green); margin-bottom: 0.25rem; }
+    .form-sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.85rem; }
+    .form-label { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .form-input, .form-select, .form-textarea { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; padding: 0.72rem 0.9rem; border: 2px solid var(--border); border-radius: 6px; background: var(--cream); color: var(--text); outline: none; transition: border-color 0.2s; -webkit-appearance: none; width: 100%; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-btn { width: 100%; background: var(--green); color: var(--gold-light); padding: 0.95rem; border: 2px solid var(--green); border-radius: 6px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 0.25rem; letter-spacing: 0.02em; }
+    .form-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--green); border-top: 3px solid var(--gold); padding: 2.5rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: 1rem; }
+    .footer-brand img { height: 60px; width: auto; }
+    .footer-brand-text { display: flex; flex-direction: column; gap: 0.2rem; }
+    .footer-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--white); }
+    .footer-tag { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.08em; font-weight: 600; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; }
+    .footer-domain { font-size: 0.78rem; color: var(--gold); text-decoration: none; font-weight: 600; }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0.6rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-logo img { height: 44px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 2.5rem 1.25rem 2rem; order: 1; }
+      .hero-right { order: 2; height: 260px; }
+      .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .hero-actions { flex-direction: column; }
+      .hero-actions a { text-align: center; }
+      .section { padding: 3.5rem 1.25rem; }
+      .plants-grid { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+      .plants-header { flex-direction: column; align-items: flex-start; }
+      .slide img { height: 260px; }
+      .story-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .story-milestones { gap: 1.25rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .trust-bar { flex-wrap: wrap; }
+      .trust-item { min-width: 50%; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-right { align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .plants-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.25rem; }
+      .story-milestones { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <img src="logo.png" alt="Las Flores Nursery Logo"/>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Las Flores Nursery</span>
+      <span class="nav-logo-sub">Est. 1991 · Orange, CA</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#plants">Plants</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#plants" onclick="closeMenu()">Plants</a>
+  <a href="#gallery" onclick="closeMenu()">Gallery</a>
+  <a href="#story" onclick="closeMenu()">Our Story</a>
+  <a href="#contact" class="mob-cta" onclick="closeMenu()">Get a Quote</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">&#9733; Family Owned &amp; Operated Since 1991</div>
+    <h1 class="hero-title">
+      Growing quality in<br>
+      <span class="gold">Southern California</span><br>
+      for over 30 years.
+    </h1>
+    <p class="hero-sub">Since 1991, the Hernandez family has supplied landscapers, contractors, and homeowners across Orange County and Riverside County with locally grown, premium-quality plants.</p>
+    <div class="hero-divider"></div>
+    <div class="hero-stats">
+      <div><div class="stat-num">30+</div><div class="stat-label">Years in Business</div></div>
+      <div><div class="stat-num">200+</div><div class="stat-label">Plant Varieties</div></div>
+      <div><div class="stat-num">OC &amp; IE</div><div class="stat-label">Counties Served</div></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      <a href="#plants" class="btn-outline">Browse Plants</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-pattern"></div>
+    <div class="hero-logo-center">
+      <img src="logo.png" alt="Las Flores Nursery"/>
+    </div>
+    <span class="hero-badge-cell">Est. 1991</span>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-num">Wholesale</div><div class="trust-label">Pricing Available</div></div>
+  <div class="trust-item"><div class="trust-num">Local</div><div class="trust-label">Family Grown</div></div>
+  <div class="trust-item"><div class="trust-num">Fast</div><div class="trust-label">Fulfillment</div></div>
+  <div class="trust-item"><div class="trust-num">40+</div><div class="trust-label">Yrs Expertise</div></div>
+</div>
+
+<!-- PLANTS -->
+<section class="section plants-bg" id="plants">
+  <div class="section-inner">
+    <div class="plants-header">
+      <div>
+        <p class="section-tag">What We Grow</p>
+        <h2 class="section-title">Our <em>plant catalog</em></h2>
+        <div class="gold-bar"></div>
+      </div>
+      <a href="#contact" class="btn-ghost">Request full catalog &rarr;</a>
+    </div>
+    <div class="plants-grid">
+      <div class="plant-card">
+        <div class="plant-img" style="background:#e4ede4;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M5 3c-.5 4 1.5 7 7 7"/><path d="M19 3c.5 4-1.5 7-7 7"/></svg><div class="plant-img-label">Trees</div></div>
+        <div class="plant-body"><div class="plant-name">Trees</div><div class="plant-desc">Shade, ornamental, and accent trees in box and container sizes — perfect for parkways, backyards, and large landscape installs.</div><div class="plant-footer"><span class="plant-tag">Box &amp; container</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
+      </div>
+      <div class="plant-card">
+        <div class="plant-img" style="background:#d8ede0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 4-2.5 7.5-6 9"/><path d="M12 2C8 6 6 10 8 14s6 6 4 10"/><path d="M2 12h20"/></svg><div class="plant-img-label">Tropicals</div></div>
+        <div class="plant-body"><div class="plant-name">Tropicals</div><div class="plant-desc">Bird of Paradise, Monstera, Elephant Ear and more. Statement plants for pools, patios, and upscale residential projects.</div><div class="plant-footer"><span class="plant-tag">Limited &amp; seasonal</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
+      </div>
+      <div class="plant-card">
+        <div class="plant-img" style="background:#e2ece2;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg><div class="plant-img-label">Privacy Hedges</div></div>
+        <div class="plant-body"><div class="plant-name">Privacy Hedges</div><div class="plant-desc">Ficus, Podocarpus, Italian Cypress and more. Fast-growing screening plants for fences, property lines, and sound barriers.</div><div class="plant-footer"><span class="plant-tag">Multiple sizes</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
+      </div>
+      <div class="plant-card">
+        <div class="plant-img" style="background:#ede8dc;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12v10"/><path d="M8 16h8"/></svg><div class="plant-img-label">Flowers</div></div>
+        <div class="plant-body"><div class="plant-name">Flowers</div><div class="plant-desc">Bougainvillea, lantana, salvia, roses and dozens more. Vibrant color for every season and every microclimate in Southern California.</div><div class="plant-footer"><span class="plant-tag">Seasonal availability</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
+      </div>
+      <div class="plant-card">
+        <div class="plant-img" style="background:#e8f0d8;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.5 2.5-1 3h-6c-.5-.5-1-1.5-1-3a4 4 0 0 1 4-4z"/><path d="M6 9h12l-1.5 11H7.5L6 9z"/></svg><div class="plant-img-label">Fruits</div></div>
+        <div class="plant-body"><div class="plant-name">Fruits</div><div class="plant-desc">Citrus, avocado, fig, pomegranate and more. Locally grown fruiting trees that thrive in Southern California's climate year-round.</div><div class="plant-footer"><span class="plant-tag">Edible &amp; ornamental</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
+      </div>
+      <div class="plant-card">
+        <div class="plant-img" style="background:#ede6d8;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8"/><path d="M12 14c-2-3-5-4-7-2 2 0 5 1 7 2z"/><path d="M12 14c2-3 5-4 7-2-2 0-5 1-7 2z"/><path d="M12 10c0-4 2-7 4-7-2 2-3 5-3 7h-2z"/></svg><div class="plant-img-label">Drought Tolerant</div></div>
+        <div class="plant-body"><div class="plant-name">Drought Tolerant</div><div class="plant-desc">Agave, aloe, ornamental grasses, and water-wise groundcovers — beautiful, low-maintenance plants built for SoCal's dry climate.</div><div class="plant-footer"><span class="plant-tag">Water-wise</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY / SLIDESHOW -->
+<section class="section slideshow-bg" id="gallery">
+  <div class="section-inner">
+    <div class="slideshow-header">
+      <p class="section-tag">Inside the Nursery</p>
+      <h2 class="section-title" style="color:#fff;">See what we're <em style="color:var(--gold);">growing</em></h2>
+      <div class="gold-bar"></div>
+    </div>
+    <div class="slideshow-wrap">
+      <div class="slideshow-track" id="slideshowTrack">
+        <div class="slide"><img src="IMG_0216.jpeg" alt="Bougainvillea in bloom"/><div class="slide-caption"><div class="slide-caption-text">Bougainvillea in full bloom</div><div class="slide-caption-sub">Las Flores Nursery · Orange, CA</div></div></div>
+        <div class="slide"><img src="IMG_0203.jpeg" alt="Succulent collection"/><div class="slide-caption"><div class="slide-caption-text">Our succulent collection</div><div class="slide-caption-sub">Dozens of varieties available year-round</div></div></div>
+        <div class="slide"><img src="IMG_0199.jpeg" alt="Succulents and cacti"/><div class="slide-caption"><div class="slide-caption-text">Echeveria, cacti &amp; more</div><div class="slide-caption-sub">Perfect for water-wise landscapes</div></div></div>
+        <div class="slide"><img src="IMG_5347.jpeg" alt="Efrain Sr. with olive trees"/><div class="slide-caption"><div class="slide-caption-text">Efrain Sr. with our olive trees</div><div class="slide-caption-sub">Over 40 years of nursery expertise</div></div></div>
+        <div class="slide"><img src="IMG_2660.jpeg" alt="Magnolia flower"/><div class="slide-caption"><div class="slide-caption-text">Magnolia in bloom</div><div class="slide-caption-sub">Flowering trees available at the nursery</div></div></div>
+        <div class="slide"><img src="IMG_2704.jpeg" alt="Tropical plants in greenhouse"/><div class="slide-caption"><div class="slide-caption-text">Inside our greenhouse</div><div class="slide-caption-sub">Tropicals &amp; shade plants grown with care</div></div></div>
+        <div class="slide"><img src="IMG_2716.jpeg" alt="Ponytail palms at sunset"/><div class="slide-caption"><div class="slide-caption-text">Ponytail palms at golden hour</div><div class="slide-caption-sub">Drought-tolerant statement plants</div></div></div>
+        <div class="slide"><img src="IMG_3810.jpeg" alt="Willow trees"/><div class="slide-caption"><div class="slide-caption-text">Weeping willows &amp; accent trees</div><div class="slide-caption-sub">Box &amp; container sizes available</div></div></div>
+        <div class="slide"><img src="IMG_3822.jpeg" alt="Viburnum shrubs"/><div class="slide-caption"><div class="slide-caption-text">Privacy hedges &amp; flowering shrubs</div><div class="slide-caption-sub">Hundreds of plants ready for your project</div></div></div>
+        <div class="slide"><img src="IMG_3834.jpeg" alt="Italian Cypress trees"/><div class="slide-caption"><div class="slide-caption-text">Italian Cypress privacy trees</div><div class="slide-caption-sub">Fast-growing, multiple sizes in stock</div></div></div>
+        <div class="slide"><img src="IMG_3842.jpeg" alt="Bird of Paradise"/><div class="slide-caption"><div class="slide-caption-text">Bird of Paradise</div><div class="slide-caption-sub">Statement tropicals for pools &amp; patios</div></div></div>
+      </div>
+      <button class="slideshow-btn slideshow-prev" onclick="moveSlide(-1)">&#8592;</button>
+      <button class="slideshow-btn slideshow-next" onclick="moveSlide(1)">&#8594;</button>
+    </div>
+    <div class="slideshow-dots" id="slideshowDots">
+      <button class="dot active" onclick="goToSlide(0)"></button>
+      <button class="dot" onclick="goToSlide(1)"></button>
+      <button class="dot" onclick="goToSlide(2)"></button>
+      <button class="dot" onclick="goToSlide(3)"></button>
+      <button class="dot" onclick="goToSlide(4)"></button>
+      <button class="dot" onclick="goToSlide(5)"></button>
+      <button class="dot" onclick="goToSlide(6)"></button>
+      <button class="dot" onclick="goToSlide(7)"></button>
+      <button class="dot" onclick="goToSlide(8)"></button>
+      <button class="dot" onclick="goToSlide(9)"></button>
+      <button class="dot" onclick="goToSlide(10)"></button>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="section story-bg" id="story">
+  <div class="section-inner">
+    <div class="story-inner">
+      <div class="story-text">
+        <p class="section-tag">Our Story</p>
+        <h2 class="section-title">A family rooted<br>in <em>Southern California</em></h2>
+        <div class="gold-bar"></div>
+        <p>Las Flores Nursery was founded in 1991 by <strong>Efrain Sr. and Annett Hernandez</strong> — a family with a simple belief that every yard deserves beautiful, healthy plants at a fair price. Efrain Sr. brings over 40 years of nursery experience, starting from the very bottom at other nurseries before building his own.</p>
+        <p>More than 30 years later, that belief hasn't changed. Landscapers who called us in the '90s still call us today. Homeowners who bought their first palms from us are now sending their kids.</p>
+        <p>When you call Las Flores, you talk to family — not a sales rep. The people who planted the seeds, raised the trees, and know every variety in the yard by name.</p>
+        <div class="story-milestones">
+          <div class="milestone"><div class="milestone-num">1991</div><div class="milestone-label">Founded in Orange, CA</div></div>
+          <div class="milestone"><div class="milestone-num">30+</div><div class="milestone-label">Years Serving SoCal</div></div>
+          <div class="milestone"><div class="milestone-num">OC &amp; IE</div><div class="milestone-label">Counties Served</div></div>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-card-bg"></div>
+        <div class="story-logo"><img src="logo.png" alt="Las Flores Nursery"/></div>
+        <div class="story-quote">"Thirty years of roots. The same family. The same care."</div>
+        <div class="story-attr">&mdash; The Hernandez Family &mdash; Est. 1991</div>
+        <div class="story-checklist">
+          <div class="story-check">Locally grown &amp; SoCal-acclimated plants</div>
+          <div class="story-check">Trusted by landscapers for over three decades</div>
+          <div class="story-check">You speak directly with family — no call centers</div>
+          <div class="story-check">Wholesale pricing for pros, fair prices for homeowners</div>
+        </div>
+        <div class="areas-row">
+          <div class="areas-label">Service Areas</div>
+          <div class="areas-chips">
+            <span class="area-chip">Anaheim</span><span class="area-chip">Irvine</span>
+            <span class="area-chip">Santa Ana</span><span class="area-chip">Orange</span>
+            <span class="area-chip">Fullerton</span><span class="area-chip">Riverside</span>
+            <span class="area-chip">Corona</span><span class="area-chip">Temecula</span>
+            <span class="area-chip">Murrieta</span><span class="area-chip">&amp; More</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-bg" id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div>
+        <p class="section-tag">Get in Touch</p>
+        <h2 class="section-title">Ready to start<br>your <em>project?</em></h2>
+        <div class="gold-bar"></div>
+        <p class="contact-info-sub">Call us, email us, or fill out the form — we'll get back to you quickly with plant recommendations and a quote.</p>
+        <div class="contact-cards">
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><div class="cc-label">Address</div><div class="cc-val">3606 E. Meats Ave., Orange, CA 92867</div></div>
+          </div>
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+            <div><div class="cc-label">Phone</div><div class="cc-val"><a href="tel:+17146378386">(714) 637-8386</a></div></div>
+          </div>
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div><div class="cc-label">Email</div><div class="cc-val"><a href="mailto:lasfloresnursery@sbcglobal.net">lasfloresnursery@sbcglobal.net</a></div></div>
+          </div>
+          <div class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <div><div class="cc-label">Instagram</div><div class="cc-val"><a href="https://www.instagram.com/lasfloresnursery.ca" target="_blank">@lasfloresnursery.ca</a></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-box">
+        <div class="form-head">Request a Quote</div>
+        <div class="form-sub">Tell us about your project and we'll be in touch shortly.</div>
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" placeholder="Maria"/></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" placeholder="Garcia"/></div>
+        </div>
+        <div class="form-group"><label class="form-label">I am a...</label><select class="form-select"><option value="">Select one...</option><option>Landscaper / Contractor</option><option>Homeowner / DIYer</option><option>HOA / Property Manager</option><option>Garden Center / Retailer</option><option>Other</option></select></div>
+        <div class="form-group"><label class="form-label">Company (if applicable)</label><input class="form-input" type="text" placeholder="Your landscaping company"/></div>
+        <div class="form-grid">
+          <div class="form-group"><label class="form-label">Phone</label><input class="form-input" type="tel" placeholder="(714) 555-0100"/></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="you@email.com"/></div>
+        </div>
+        <div class="form-group"><label class="form-label">Plants I'm looking for</label><select class="form-select"><option value="">Select a category...</option><option>Trees</option><option>Tropicals</option><option>Privacy Hedges</option><option>Flowers</option><option>Fruits</option><option>Drought Tolerant</option><option>Mixed / Full Catalog</option><option>Not sure — need help!</option></select></div>
+        <div class="form-group"><label class="form-label">Tell us about your project</label><textarea class="form-textarea" placeholder="Describe your project, plant quantities, timeline, or just ask a question..."></textarea></div>
+        <button class="form-btn" onclick="handleSubmit(event)">Send My Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="Las Flores Nursery Logo"/>
+    <div class="footer-brand-text">
+      <div class="footer-name">Las Flores Nursery</div>
+      <div class="footer-tag">Wholesale Plants · Orange County &amp; Riverside County</div>
+    </div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#plants">Plants</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-right">
+    <a class="footer-domain" href="https://www.lasfloresnursery.com">lasfloresnursery.com</a>
+    <div class="footer-copy">&copy; 2026 Las Flores Nursery. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  function closeMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+  window.addEventListener('scroll', () => { document.getElementById('navbar').style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(26,61,31,0.1)' : 'none'; });
+  function handleSubmit(e) { e.preventDefault(); const btn = e.target; btn.textContent = 'Sent! We\'ll be in touch soon.'; btn.style.background = '#4e8c5f'; btn.disabled = true; }
+  let currentSlide = 0;
+  const totalSlides = 11;
+  const track = document.getElementById('slideshowTrack');
+  const dots = document.querySelectorAll('.dot');
+  function updateSlideshow() { track.style.transform = `translateX(-${currentSlide * 100}%)`; dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide)); }
+  function moveSlide(dir) { currentSlide = (currentSlide + dir + totalSlides) % totalSlides; updateSlideshow(); }
+  function goToSlide(n) { currentSlide = n; updateSlideshow(); }
+  setInterval(() => moveSlide(1), 5000);
+  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } }); }, { threshold: 0.08 });
+  document.querySelectorAll('.plant-card, .story-check, .contact-card, .milestone, .trust-item').forEach((el, i) => { el.style.opacity = '0'; el.style.transform = 'translateY(16px)'; el.style.transition = `opacity 0.5s ${i * 0.06}s ease, transform 0.5s ${i * 0.06}s ease`; observer.observe(el); });
+</script>
+</body>
+</html>
