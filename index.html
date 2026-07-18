@@ -224,6 +224,24 @@
     .footer-domain { font-size: 0.78rem; color: var(--gold); text-decoration: none; font-weight: 600; }
     .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
 
+
+    /* ── TREE SLIDESHOW ── */
+    .plant-card.has-slideshow .plant-img { cursor: pointer; position: relative; }
+    .plant-card.has-slideshow .plant-img::after { content: '▶ View Photos'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(26,61,31,0.85); color: var(--gold-light); font-size: 0.75rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: 20px; letter-spacing: 0.05em; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+    .plant-card.has-slideshow .plant-img:hover::after { opacity: 1; }
+    .tree-slideshow-panel { display: none; border-top: 2px solid var(--gold); }
+    .tree-slideshow-panel.open { display: block; }
+    .tree-slide-wrap { position: relative; overflow: hidden; }
+    .tree-slide-track { display: flex; transition: transform 0.5s ease; }
+    .tree-slide { min-width: 100%; }
+    .tree-slide img { width: 100%; height: 240px; object-fit: cover; display: block; }
+    .tree-slide-caption { padding: 0.6rem 1rem; background: var(--green); display: flex; justify-content: space-between; align-items: center; }
+    .tree-slide-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-style: italic; color: var(--white); }
+    .tree-slide-nav { display: flex; gap: 0.5rem; align-items: center; }
+    .tree-slide-btn { background: var(--gold); color: var(--green); border: none; width: 28px; height: 28px; border-radius: 50%; font-size: 0.85rem; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .tree-slide-counter { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+    .tree-varieties-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold-pale); border: 1.5px solid var(--gold); color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 20px; margin-bottom: 0.6rem; }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
 
@@ -357,9 +375,28 @@
       <a href="#contact" class="btn-ghost">Request full catalog &rarr;</a>
     </div>
     <div class="plants-grid">
-      <div class="plant-card">
-        <div class="plant-img" style="background:#e4ede4;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M5 3c-.5 4 1.5 7 7 7"/><path d="M19 3c.5 4-1.5 7-7 7"/></svg><div class="plant-img-label">Trees</div></div>
-        <div class="plant-body"><div class="plant-name">Trees</div><div class="plant-desc">Shade, ornamental, and accent trees in box and container sizes — perfect for parkways, backyards, and large landscape installs.</div><div class="plant-footer"><span class="plant-tag">Box &amp; container</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div></div>
+      <div class="plant-card has-slideshow">
+        <div class="plant-img" style="background:#e4ede4; cursor:pointer;" onclick="toggleTreeSlideshow()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M5 3c-.5 4 1.5 7 7 7"/><path d="M19 3c.5 4-1.5 7-7 7"/></svg>
+          <div class="plant-img-label">Trees — Tap to see photos</div>
+        </div>
+        <div class="plant-body">
+          <div class="tree-varieties-badge">&#127807; 50+ Unique Varieties Available</div>
+          <div class="plant-name">Trees</div>
+          <div class="plant-desc">Shade, ornamental, and accent trees in box and container sizes — perfect for parkways, backyards, and large landscape installs. More varieties always coming in.</div>
+          <div class="plant-footer"><span class="plant-tag">Box &amp; container</span><a href="#contact" class="plant-link">Inquire &rarr;</a></div>
+        </div>
+        <div class="tree-slideshow-panel" id="treeSlideshowPanel">
+          <div class="tree-slide-wrap">
+            <div class="tree-slide-track" id="treeTrack">
+              <div class="tree-slide"><img src="tree1.jpeg" alt="Arbutus Marina at Las Flores Nursery"/><div class="tree-slide-caption"><span class="tree-slide-name">Arbutus Marina (Strawberry Tree)</span><div class="tree-slide-nav"><button class="tree-slide-btn" onclick="treeSlide(-1)">&#8592;</button><span class="tree-slide-counter" id="treeCounter">1 / 5</span><button class="tree-slide-btn" onclick="treeSlide(1)">&#8594;</button></div></div></div>
+              <div class="tree-slide"><img src="tree2.jpeg" alt="Olive Tree at Las Flores Nursery"/><div class="tree-slide-caption"><span class="tree-slide-name">Olive Tree (Olea europaea)</span><div class="tree-slide-nav"><button class="tree-slide-btn" onclick="treeSlide(-1)">&#8592;</button><span class="tree-slide-counter">2 / 5</span><button class="tree-slide-btn" onclick="treeSlide(1)">&#8594;</button></div></div></div>
+              <div class="tree-slide"><img src="tree3.jpeg" alt="California Pepper Tree at Las Flores Nursery"/><div class="tree-slide-caption"><span class="tree-slide-name">California Pepper Tree</span><div class="tree-slide-nav"><button class="tree-slide-btn" onclick="treeSlide(-1)">&#8592;</button><span class="tree-slide-counter">3 / 5</span><button class="tree-slide-btn" onclick="treeSlide(1)">&#8594;</button></div></div></div>
+              <div class="tree-slide"><img src="tree4.jpeg" alt="California Pepper Tree Standard at Las Flores Nursery"/><div class="tree-slide-caption"><span class="tree-slide-name">California Pepper Tree — Standard Form</span><div class="tree-slide-nav"><button class="tree-slide-btn" onclick="treeSlide(-1)">&#8592;</button><span class="tree-slide-counter">4 / 5</span><button class="tree-slide-btn" onclick="treeSlide(1)">&#8594;</button></div></div></div>
+              <div class="tree-slide"><img src="tree5.jpeg" alt="Crape Myrtle at Las Flores Nursery"/><div class="tree-slide-caption"><span class="tree-slide-name">Crape Myrtle — Multiple Colors Available</span><div class="tree-slide-nav"><button class="tree-slide-btn" onclick="treeSlide(-1)">&#8592;</button><span class="tree-slide-counter">5 / 5</span><button class="tree-slide-btn" onclick="treeSlide(1)">&#8594;</button></div></div></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="plant-card">
         <div class="plant-img" style="background:#d8ede0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 4-2.5 7.5-6 9"/><path d="M12 2C8 6 6 10 8 14s6 6 4 10"/><path d="M2 12h20"/></svg><div class="plant-img-label">Tropicals</div></div>
@@ -448,13 +485,13 @@
         <div class="story-logo">
           <img src="family.jpeg" alt="The Hernandez Family" style="width:100%; border-radius:8px; border:2px solid rgba(212,146,10,0.4); display:block;"/>
         </div>
-        <div class="story-quote">"Thirty years of roots. The same family. The same care."</div>
+        <div class="story-quote">"From our yard to yours."</div>
         <div class="story-attr">&mdash; The Hernandez Family &mdash; Est. 1991</div>
         <div class="story-checklist">
           <div class="story-check">Locally grown &amp; SoCal-acclimated plants</div>
           <div class="story-check">Trusted by landscapers for over three decades</div>
-          <div class="story-check">You speak directly with family — no call centers</div>
-          <div class="story-check">Wholesale pricing for pros, fair prices for homeowners</div>
+          <div class="story-check">Over 50 years of nursery &amp; landscaping experience</div>
+          <div class="story-check">Wholesale pricing &amp; open to the public</div>
         </div>
         <div class="areas-row">
           <div class="areas-label">Service Areas</div>
